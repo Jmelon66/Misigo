@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { getresponseBody, responseBody } from './common/responseBody';
+import { getresponseBody } from './common/responseBody';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
 @Injectable()
 export class AppService {
   constructor(private readonly httpService: HttpService) {}
-  async getHello(): Promise<responseBody<string>> {
+  async getHello(): Promise<Global.responseBody<string>> {
     const { data } = await lastValueFrom(
       this.httpService.post('https://api.qinor.cn/soup/', {
         headers: {
