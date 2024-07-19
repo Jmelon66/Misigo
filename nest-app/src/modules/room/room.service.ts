@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-07-14 14:30:55
  * @LastEditors: Jmelon66 961255554@qq.com
- * @LastEditTime: 2024-07-19 17:27:31
+ * @LastEditTime: 2024-07-19 17:33:03
  * @FilePath: \nest-app\src\modules\room\room.service.ts
  * @Description: room
  * @Author: ms-tlzksaoastkh
