@@ -5,11 +5,13 @@ import { AppService } from './app.service';
 import { RoomModule } from './modules/room/room.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { RedisModule } from '@nestjs-modules/ioredis';
+import { UserModule } from './modules/user/user.module';
 // import { readFileSync } from 'fs';
 // import { Room } from 'src/entities/room.entity';
 @Module({
   imports: [
     HttpModule,
+    UserModule,
     RoomModule,
     PrismaModule,
     RedisModule.forRoot({
