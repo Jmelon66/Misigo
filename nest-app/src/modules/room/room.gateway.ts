@@ -2,7 +2,7 @@
  * @Author: Jmelon66 961255554@qq.com
  * @Date: 2024-07-15 10:22:55
  * @LastEditors: Jmelon66 961255554@qq.com
- * @LastEditTime: 2024-07-18 09:40:44
+ * @LastEditTime: 2024-08-18 21:32:39
  * @FilePath: \nest-app\src\modules\room\room.gateway.ts
  * @Description:
  */
@@ -120,10 +120,18 @@ export class RoomGateway {
     socket_user_map.set(socId, userId);
     socket_room_map.set(socId, roomId);
     user_socket_map.set(userId, socId);
-    // this.socket
-    //   .to(roomId)
-    //   .emit('getOffer', { name: 'getOffer', data: { userId } });
+    this.socket
+      .to(roomId)
+      .emit('getOffer', { name: 'getOffer', data: { userId } });
     client.join(roomId);
+  }
+  @SubscribeMessage('GetOffer')
+  ReadyGetOffer(client, param) {
+    console.log('GetOffer');
+    const { userId, roomId } = param;
+    this.socket
+      .to(roomId)
+      .emit('getOffer', { name: 'getOffer', data: { userId } });
   }
   /**
    * @Date: 2024-07-17 09:49:02

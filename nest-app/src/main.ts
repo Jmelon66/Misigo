@@ -8,8 +8,8 @@ import {
   CorsOptions,
   CorsOptionsDelegate,
 } from '@nestjs/common/interfaces/external/cors-options.interface';
-import fastifyCookie from '@fastify/cookie';
 import { randomUUID } from 'crypto';
+import { fastifyCookie } from '@fastify/cookie';
 const corsOptionsDelegate: CorsOptionsDelegate<any> = function () {
   let corsOption: CorsOptions = {};
   corsOption = {
@@ -26,9 +26,7 @@ const corsOptionsDelegate: CorsOptionsDelegate<any> = function () {
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter({
-      http2: true,
-    }),
+    new FastifyAdapter({}),
   );
   app.enableCors(corsOptionsDelegate);
   await app.register(fastifyCookie, {
@@ -36,7 +34,7 @@ async function bootstrap() {
     parseOptions: {
       httpOnly: true,
       path: '/',
-      maxAge: 600,
+      maxAge: 60 * 1000,
     },
   });
   await app.listen(3001);
